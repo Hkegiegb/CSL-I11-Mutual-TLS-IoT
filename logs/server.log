@@ -1,0 +1,54 @@
+2026-11-18 02:39:57,408 [INFO] Loading Server Identity: server.crt
+2026-11-18 02:39:57,412 [INFO] Loading Trusted Root CA: ca.crt
+2026-11-18 02:39:57,420 [INFO] =================================================================
+2026-11-18 02:39:57,420 [INFO]  mTLS IoT Gateway Server listening on 127.0.0.1:8443
+2026-11-18 02:39:57,420 [INFO]  Mutual Authentication: REQUIRED (Client X.509 mandatory)
+2026-11-18 02:39:57,420 [INFO]  Root Trust Anchor: c:\Users\awjkd\Downloads\Foodshare-Ai\CSL-I11_mTLS_IoT\certs\ca.crt
+2026-11-18 02:39:57,421 [INFO] =================================================================
+2026-11-18 02:39:58,424 [INFO] [+] TCP connection accepted from ('127.0.0.1', 55488)
+2026-11-18 02:39:58,486 [INFO] [+] mTLS HANDSHAKE SUCCESS with ('127.0.0.1', 55488)
+2026-11-18 02:39:58,487 [INFO]     |-- Protocol: TLSv1.3
+2026-11-18 02:39:58,488 [INFO]     |-- Cipher Suite: TLS_AES_256_GCM_SHA384 (256 bits)
+2026-11-18 02:39:58,488 [INFO]     |-- Authenticated Device CN: device01
+2026-11-18 02:39:58,488 [INFO]     |-- Validated by CA: ca
+2026-11-18 02:39:58,488 [INFO]     |-- Certificate Serial: 7719A58A792B3F62AEC18F49C368A5A15C756748
+2026-11-18 02:39:58,488 [INFO]     |-- Validity Period: Nov 16 21:07:30 2026 GMT to Nov 17 21:07:30 2027 GMT
+2026-11-18 02:39:58,488 [INFO] [*] Received Encrypted Sensor Data from 'device01': {"device_id": "device01", "sensor_type": "Environmental_Monitor_v2", "temperature_celsius": 24.36, "humidity_percent": 54.4, "battery_voltage": 3.88, "timestamp": "2026-11-17T21:09:58.437731Z"}
+2026-11-18 02:39:58,489 [INFO] [+] [EXP 8 - DIGITAL SIGNATURE VERIFIED] Authentic payload from 'device01'
+2026-11-18 02:39:58,490 [INFO] [+] Session cleanly closed for device01
+
+2026-11-18 02:39:58,998 [INFO] [+] TCP connection accepted from ('127.0.0.1', 55489)
+2026-11-18 02:39:59,048 [INFO] [+] mTLS HANDSHAKE SUCCESS with ('127.0.0.1', 55489)
+2026-11-18 02:39:59,049 [INFO]     |-- Protocol: TLSv1.3
+2026-11-18 02:39:59,049 [INFO]     |-- Cipher Suite: TLS_AES_256_GCM_SHA384 (256 bits)
+2026-11-18 02:39:59,049 [INFO]     |-- Authenticated Device CN: device02
+2026-11-18 02:39:59,049 [INFO]     |-- Validated by CA: ca
+2026-11-18 02:39:59,049 [INFO]     |-- Certificate Serial: 5DFF1BB4668884A1E0996B8B2B1E90EDD17EDAC6
+2026-11-18 02:39:59,049 [INFO]     |-- Validity Period: Nov 16 21:07:30 2026 GMT to Nov 17 21:07:30 2027 GMT
+2026-11-18 02:39:59,049 [INFO] [*] Received Encrypted Sensor Data from 'device02': {"device_id": "device02", "sensor_type": "Environmental_Monitor_v2", "temperature_celsius": 23.38, "humidity_percent": 69.5, "battery_voltage": 4.07, "timestamp": "2026-11-17T21:09:59.003321Z"}
+2026-11-18 02:39:59,050 [INFO] [+] [EXP 8 - DIGITAL SIGNATURE VERIFIED] Authentic payload from 'device02'
+2026-11-18 02:39:59,050 [INFO] [+] Session cleanly closed for device02
+
+2026-11-18 02:39:59,555 [INFO] [+] TCP connection accepted from ('127.0.0.1', 55490)
+2026-11-18 02:39:59,558 [ERROR] [!] [mTLS HANDSHAKE FAILED] Security violation from ('127.0.0.1', 55490):
+2026-11-18 02:39:59,558 [ERROR]     Reason: PEER_DID_NOT_RETURN_A_CERTIFICATE
+2026-11-18 02:40:00,065 [INFO] [+] TCP connection accepted from ('127.0.0.1', 55491)
+2026-11-18 02:40:00,070 [ERROR] [!] [mTLS HANDSHAKE FAILED] Security violation from ('127.0.0.1', 55491):
+2026-11-18 02:40:00,071 [ERROR]     Reason: CERTIFICATE_VERIFY_FAILED
+2026-11-18 02:40:00,577 [INFO] [+] TCP connection accepted from ('127.0.0.1', 55492)
+2026-11-18 02:40:00,583 [ERROR] [!] [mTLS HANDSHAKE FAILED] Security violation from ('127.0.0.1', 55492):
+2026-11-18 02:40:00,583 [ERROR]     Reason: CERTIFICATE_VERIFY_FAILED
+2026-11-18 02:40:01,089 [INFO] [+] TCP connection accepted from ('127.0.0.1', 55493)
+2026-11-18 02:40:01,138 [INFO] [+] mTLS HANDSHAKE SUCCESS with ('127.0.0.1', 55493)
+2026-11-18 02:40:01,138 [INFO]     |-- Protocol: TLSv1.3
+2026-11-18 02:40:01,139 [INFO]     |-- Cipher Suite: TLS_AES_256_GCM_SHA384 (256 bits)
+2026-11-18 02:40:01,139 [INFO]     |-- Authenticated Device CN: device01
+2026-11-18 02:40:01,139 [INFO]     |-- Validated by CA: ca
+2026-11-18 02:40:01,139 [INFO]     |-- Certificate Serial: 7719A58A792B3F62AEC18F49C368A5A15C756748
+2026-11-18 02:40:01,139 [INFO]     |-- Validity Period: Nov 16 21:07:30 2026 GMT to Nov 17 21:07:30 2027 GMT
+2026-11-18 02:40:01,139 [INFO] [*] Received Encrypted Sensor Data from 'device01': {"device_id": "device01", "sensor_type": "Environmental_Monitor_v2", "temperature_celsius": 999.9, "humidity_percent": 68.5, "battery_voltage": 3.79, "timestamp": "2026-11-17T21:10:01.094399Z"}
+2026-11-18 02:40:01,139 [ERROR] [!] [SECURITY ALERT] Digital signature verification FAILED for 'device01'! Data may be tampered.
+2026-11-18 02:40:01,140 [INFO] [+] Session cleanly closed for device01
+
+2026-11-18 02:40:01,140 [INFO] [*] Server stopped.
+2026-11-18 02:40:01,140 [INFO] [*] Server stopped.

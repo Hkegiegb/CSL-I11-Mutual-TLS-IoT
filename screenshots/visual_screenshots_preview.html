@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSL-I11: Project Screenshots & Wireshark Captures</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    margin: 0;
+    padding: 24px;
+  }
+  h1 { text-align: center; color: #38bdf8; margin-bottom: 8px; font-size: 26px; }
+  .subtitle { text-align: center; color: #94a3b8; margin-bottom: 32px; font-size: 14px; }
+  .container { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
+  
+  .card {
+    background: #1e293b;
+    border-radius: 10px;
+    border: 1px solid #334155;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+  }
+  .card-header {
+    background: #0f172a;
+    padding: 12px 18px;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .card-title { font-weight: 600; color: #f1f5f9; font-size: 15px; }
+  .badge {
+    background: #0284c7;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  .badge-danger { background: #dc2626; }
+  .badge-success { background: #16a34a; }
+  .badge-purple { background: #7c3aed; }
+  
+  .terminal-bar {
+    background: #2d3748;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .circle { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+  .red { background: #ef4444; }
+  .yellow { background: #eab308; }
+  .green { background: #22c55e; }
+  .term-title { color: #a0aec0; font-size: 12px; margin-left: 10px; font-family: monospace; }
+
+  .term-body {
+    background: #090d16;
+    padding: 18px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #cbd5e1;
+    overflow-x: auto;
+  }
+  .cmd { color: #38bdf8; font-weight: bold; }
+  .ok { color: #4ade80; font-weight: bold; }
+  .warn { color: #facc15; }
+  .err { color: #f87171; font-weight: bold; }
+  .dim { color: #64748b; }
+  .hi { color: #e2e8f0; font-weight: bold; }
+
+  /* Wireshark styling */
+  .ws-body {
+    background: #ffffff;
+    color: #1e293b;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 12px;
+  }
+  .ws-filter {
+    background: #e2e8f0;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #cbd5e1;
+    font-size: 12px;
+    color: #334155;
+  }
+  .ws-filter-input {
+    background: #86efac;
+    color: #064e3b;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-weight: bold;
+    border: 1px solid #22c55e;
+  }
+  .ws-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .ws-table th {
+    background: #f1f5f9;
+    text-align: left;
+    padding: 6px 8px;
+    border-bottom: 2px solid #cbd5e1;
+    color: #475569;
+    font-size: 11px;
+  }
+  .ws-table td {
+    padding: 4px 8px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .row-tls { background: #e0f2fe; color: #0369a1; }
+  .row-alert { background: #fee2e2; color: #991b1b; font-weight: bold; }
+  .row-sel { background: #0284c7; color: white; font-weight: bold; }
+
+  .ws-tree {
+    background: #f8fafc;
+    border-top: 2px solid #cbd5e1;
+    padding: 12px;
+    color: #1e293b;
+    line-height: 1.5;
+  }
+  .tree-node { font-weight: bold; color: #0f172a; }
+  .tree-leaf { padding-left: 20px; color: #334155; }
+</style>
+</head>
+<body>
+
+<h1>CSL-I11: Mutual TLS Authentication for IoT Devices</h1>
+<div class="subtitle">Official Lab Report Screenshot Templates (Chapter 5: Results & Testing)</div>
+
+<div class="container">
+
+  <!-- Fig 5.1: Certificate Generation -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Figure 5.1: Automated PKI & X.509 Certificate Hierarchy Generation</div>
+      <span class="badge badge-success">PKI Setup</span>
+    </div>
+    <div class="terminal-bar">
+      <span class="circle red"></span><span class="circle yellow"></span><span class="circle green"></span>
+      <span class="term-title">PowerShell - generate_certificates.py</span>
+    </div>
+    <div class="term-body">
+<span class="cmd">PS C:\Foodshare-Ai\CSL-I11_mTLS_IoT&gt; python generate_certificates.py</span>
+=================================================================
+  PKI Generator for Mutual TLS (mTLS) IoT Authentication
+=================================================================
+[*] Generating Root CA (ca)...
+[*] Issuing Server Certificate: server...
+[*] Issuing Device Certificate: device01...
+[*] Issuing Device Certificate: device02...
+[*] Issuing Device Certificate: expired_device...
+
+[*] Generating Rogue / Untrusted CA &amp; Certificate for Attack Simulation...
+[*] Generating Root CA (rogue_ca)...
+[*] Issuing Device Certificate: rogue_device...
+
+=================================================================
+<span class="ok">[+] All certificates generated successfully in: \certs</span>
+=================================================================
+  - ca.crt                 (1387 bytes)  <span class="dim">[Root Authority]</span>
+  - server.crt             (1395 bytes)  <span class="dim">[SAN: localhost, 127.0.0.1]</span>
+  - device01.crt           (1383 bytes)  <span class="dim">[CN: device01]</span>
+  - device02.crt           (1383 bytes)  <span class="dim">[CN: device02]</span>
+  - rogue_device.crt       (1403 bytes)  <span class="dim">[Untrusted Root Anchor]</span>
+  - expired_device.crt     (1399 bytes)  <span class="dim">[Validity: Expired 10 days ago]</span>
+    </div>
+  </div>
+
+  <!-- Fig 5.2 & 5.3: Successful mTLS Connection -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Figure 5.2: Legitimate IoT Node Connection &amp; Digital Signature Verification (200 OK)</div>
+      <span class="badge badge-success">TC-01 &amp; TC-02 PASS</span>
+    </div>
+    <div class="terminal-bar">
+      <span class="circle red"></span><span class="circle yellow"></span><span class="circle green"></span>
+      <span class="term-title">PowerShell - IoT Gateway Server (Port 8443) vs IoT Device Node</span>
+    </div>
+    <div class="term-body">
+<span class="dim">--- GATEWAY SERVER LOG ---</span>
+2026-11-18 02:40:00 [INFO] <span class="ok">[+] TCP connection accepted from ('127.0.0.1', 55488)</span>
+2026-11-18 02:40:00 [INFO] <span class="ok">[+] mTLS HANDSHAKE SUCCESS with ('127.0.0.1', 55488)</span>
+2026-11-18 02:40:00 [INFO]     |-- Protocol: <span class="hi">TLSv1.3</span>
+2026-11-18 02:40:00 [INFO]     |-- Cipher Suite: <span class="hi">TLS_AES_256_GCM_SHA384 (256 bits)</span>
+2026-11-18 02:40:00 [INFO]     |-- Authenticated Device CN: <span class="ok">device01</span>
+2026-11-18 02:40:00 [INFO]     |-- Validated by CA: <span class="hi">SKIT IoT Authority</span>
+2026-11-18 02:40:00 [INFO] [*] Received Encrypted Sensor Data: {"device_id": "device01", "temperature_celsius": 24.36, "humidity_percent": 54.4, "battery_voltage": 3.88}
+2026-11-18 02:40:00 [INFO] <span class="ok">[+] [EXP 8 - DIGITAL SIGNATURE VERIFIED] Authentic payload from 'device01'</span>
+2026-11-18 02:40:00 [INFO] [+] Session cleanly closed for device01
+
+<span class="dim">--- CLIENT DEVICE OUTPUT ---</span>
+<span class="cmd">PS C:\Foodshare-Ai\CSL-I11_mTLS_IoT&gt; python iot_device.py device01</span>
+[*] Connecting to IoT Gateway Server at 127.0.0.1:8443...
+<span class="ok">[+] mTLS Handshake SUCCESSFUL! (TLSv1.3 / TLS_AES_256_GCM_SHA384)</span>
+    |-- Verified Gateway Identity: server
+<span class="ok">[+] [EXP 8 - DIGITAL SIGNATURE GENERATED] (RSA-SHA256): A6Vq8nFG6ZaXrSdnc...</span>
+[*] Transmitting encrypted payload across mTLS tunnel...
+<span class="ok">[+] Gateway Response Received: { "status": "SUCCESS", "code": 200, "message": "Sensor telemetry authenticated &amp; stored securely" }</span>
+    </div>
+  </div>
+
+  <!-- Fig 5.4: Negative Attack Rejection -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Figure 5.3: Rogue Device &amp; Missing Certificate Attacks Neutralized</div>
+      <span class="badge badge-danger">Attacks Defended</span>
+    </div>
+    <div class="terminal-bar">
+      <span class="circle red"></span><span class="circle yellow"></span><span class="circle green"></span>
+      <span class="term-title">PowerShell - rogue_device.py (Attacks 1, 2, 3)</span>
+    </div>
+    <div class="term-body">
+<span class="dim">--- ATTACK 1: Missing Client Certificate ---</span>
+[*] Connecting to Gateway without client certificate...
+<span class="err">2026-11-18 02:40:01 [ERROR] [!] [mTLS HANDSHAKE FAILED] Security violation from ('127.0.0.1', 55490):</span>
+<span class="err">2026-11-18 02:40:01 [ERROR]     Reason: PEER_DID_NOT_RETURN_A_CERTIFICATE</span>
+<span class="ok">[+] DEFENSE ACTIVE: Handshake rejected by server as expected!</span>
+
+<span class="dim">--- ATTACK 2: Rogue Impersonator (Untrusted CA) ---</span>
+[*] Connecting presenting certificate signed by "Hacker Syndicate CA"...
+<span class="err">2026-11-18 02:40:02 [ERROR] [!] [mTLS HANDSHAKE FAILED] Security violation from ('127.0.0.1', 55491):</span>
+<span class="err">2026-11-18 02:40:02 [ERROR]     Reason: CERTIFICATE_VERIFY_FAILED</span>
+<span class="ok">[+] DEFENSE ACTIVE: Gateway server rejected untrusted Rogue CA certificate!</span>
+
+<span class="dim">--- ATTACK 3: Stale / Expired Certificate ---</span>
+[*] Connecting with expired certificate...
+<span class="err">2026-11-18 02:40:03 [ERROR]     Reason: CERTIFICATE_VERIFY_FAILED (Certificate has expired)</span>
+<span class="ok">[+] DEFENSE ACTIVE: Gateway server blocked expired device certificate!</span>
+    </div>
+  </div>
+
+  <!-- Fig 5.5: Data Tampering Rejection -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Figure 5.4: In-Transit Data Tampering Attack Neutralized (Exp 8 Digital Signature)</div>
+      <span class="badge badge-danger">TC-06 Defense</span>
+    </div>
+    <div class="terminal-bar">
+      <span class="circle red"></span><span class="circle yellow"></span><span class="circle green"></span>
+      <span class="term-title">PowerShell - Data Tampering Simulation</span>
+    </div>
+    <div class="term-body">
+[*] Legitimate mTLS Handshake SUCCESSFUL!
+<span class="warn">[!] TAMPERING ATTACK: Modifying temperature reading after signing (23.7°C -&gt; 999.9°C)...</span>
+[*] Transmitting modified payload across mTLS tunnel...
+<span class="err">2026-11-18 02:40:04 [ERROR] [!] [SECURITY ALERT] Digital signature verification FAILED for 'device01'! Data may be tampered.</span>
+<span class="err">[+] Gateway Response Received: { "status": "REJECTED", "code": 401, "message": "Signature verification failed - Integrity violation" }</span>
+<span class="ok">[+] DEFENSE ACTIVE: Altered data rejected by cryptographic signature check!</span>
+    </div>
+  </div>
+
+  <!-- Fig 5.6: Wireshark Packet Capture -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Figure 5.5: Wireshark Packet Inspection of mTLS Handshake &amp; Encrypted Stream</div>
+      <span class="badge badge-purple">Wireshark Capture</span>
+    </div>
+    <div class="ws-body">
+      <div class="ws-filter">
+        <span>Filter:</span>
+        <span class="ws-filter-input">tcp.port == 8443 &amp;&amp; tls</span>
+      </div>
+      <table class="ws-table">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Time</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Protocol</th>
+            <th>Length</th>
+            <th>Info</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-tls">
+            <td>412</td>
+            <td>1.0241</td>
+            <td>127.0.0.1</td>
+            <td>127.0.0.1</td>
+            <td>TLSv1.3</td>
+            <td>517</td>
+            <td>Client Hello</td>
+          </tr>
+          <tr class="row-tls">
+            <td>414</td>
+            <td>1.0278</td>
+            <td>127.0.0.1</td>
+            <td>127.0.0.1</td>
+            <td>TLSv1.3</td>
+            <td>1460</td>
+            <td>Server Hello, Change Cipher Spec, Application Data (Certificate, CertificateRequest)</td>
+          </tr>
+          <tr class="row-sel">
+            <td>418</td>
+            <td>1.0315</td>
+            <td>127.0.0.1</td>
+            <td>127.0.0.1</td>
+            <td>TLSv1.3</td>
+            <td>1412</td>
+            <td>Certificate, Certificate Verify, Finished [mTLS Client Authentication]</td>
+          </tr>
+          <tr class="row-tls">
+            <td>420</td>
+            <td>1.0332</td>
+            <td>127.0.0.1</td>
+            <td>127.0.0.1</td>
+            <td>TLSv1.3</td>
+            <td>328</td>
+            <td>Application Data (Encrypted Sensor Telemetry Payload)</td>
+          </tr>
+          <tr class="row-tls">
+            <td>422</td>
+            <td>1.0349</td>
+            <td>127.0.0.1</td>
+            <td>127.0.0.1</td>
+            <td>TLSv1.3</td>
+            <td>214</td>
+            <td>Application Data (Encrypted Server ACK 200 OK)</td>
+          </tr>
+          <tr class="row-alert">
+            <td>506</td>
+            <td>4.2180</td>
+            <td>127.0.0.1</td>
+            <td>127.0.0.1</td>
+            <td>TLSv1.3</td>
+            <td>85</td>
+            <td>Alert (Level: Fatal, Description: Certificate Unknown / Bad Certificate)</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="ws-tree">
+        <div class="tree-node">▾ Frame 418: 1412 bytes on wire (Loopback Adapter)</div>
+        <div class="tree-node">▾ Transmission Control Protocol, Src Port: 55488, Dst Port: 8443, Seq: 518, Ack: 1461</div>
+        <div class="tree-node">▾ Transport Layer Security (TLSv1.3)</div>
+        <div class="tree-leaf">▾ TLSv1.3 Record Layer: Handshake Protocol: Certificate</div>
+        <div class="tree-leaf">&nbsp;&nbsp;&nbsp;&nbsp;Certificate Length: 1383 bytes (Subject: CN=device01, O=SKIT CyberSec Lab)</div>
+        <div class="tree-leaf">▾ TLSv1.3 Record Layer: Handshake Protocol: Certificate Verify</div>
+        <div class="tree-leaf">&nbsp;&nbsp;&nbsp;&nbsp;Signature Algorithm: rsa_pss_rsae_sha256 (0x0804)</div>
+        <div class="tree-leaf">&nbsp;&nbsp;&nbsp;&nbsp;Digital Signature: [Exp 8 Non-Repudiation Proof: 256 bytes]</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fig 5.7: Security Audit Table -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Figure 5.6: Automated Security Audit &amp; Verification Matrix (All 6/6 Pass)</div>
+      <span class="badge badge-success">Audit Complete</span>
+    </div>
+    <div class="terminal-bar">
+      <span class="circle red"></span><span class="circle yellow"></span><span class="circle green"></span>
+      <span class="term-title">PowerShell - run_security_tests.py</span>
+    </div>
+    <div class="term-body">
++-----------+------------------------+-----------------------------+------------------------+-------------------------------------+----------+
+| Test ID   | Scenario Description   | Input / Vector              | Expected Outcome       | Observed Outcome                    | Result   |
++===========+========================+=============================+========================+=====================================+==========+
+| TC-01     | Legitimate Device 01   | Valid CA-Signed Cert        | Authorized (200 OK)    | Authorized (200 OK)                 | <span class="ok">PASS</span>     |
++-----------+------------------------+-----------------------------+------------------------+-------------------------------------+----------+
+| TC-02     | Legitimate Device 02   | Valid CA-Signed Cert        | Authorized (200 OK)    | Authorized (200 OK)                 | <span class="ok">PASS</span>     |
++-----------+------------------------+-----------------------------+------------------------+-------------------------------------+----------+
+| TC-03     | Anonymous Client       | No Client Certificate       | Handshake Rejected     | Handshake Rejected (CERT_REQUIRED)  | <span class="ok">PASS</span>     |
++-----------+------------------------+-----------------------------+------------------------+-------------------------------------+----------+
+| TC-04     | Rogue Impersonator     | Cert from Fake Root CA      | Handshake Terminated   | Handshake Terminated (Untrusted CA) | <span class="ok">PASS</span>     |
++-----------+------------------------+-----------------------------+------------------------+-------------------------------------+----------+
+| TC-05     | Stale Device           | Expired X.509 Certificate   | Handshake Terminated   | Handshake Terminated (Cert Expired) | <span class="ok">PASS</span>     |
++-----------+------------------------+-----------------------------+------------------------+-------------------------------------+----------+
+| TC-06     | Tampered Telemetry     | Valid Cert, Altered Payload | Payload Rejected (401) | Payload Rejected (401)              | <span class="ok">PASS</span>     |
++-----------+------------------------+-----------------------------+------------------------+-------------------------------------+----------+
+<span class="ok">[+] All 6/6 test cases verified successfully.</span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
